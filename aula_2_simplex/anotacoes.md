@@ -20,18 +20,18 @@ Um problema de programação linear é um problema da forma:
 
 Ou, de forma mais específica:
 
-* Max Z = y0 + y1x1 + ... ynxn (a função objetivo também pode ser de minimizar)
-* a0 + a1x1 + ... + anxn <= 0
-* ...
-* m0 + m1x1 + ... + <= 0
+* $Max Z = y_0 + y_1x_1 + \ldots + y_nx_n$ (a função objetivo também pode ser de minimizar)
+* $a_0 + a_1x_1 + \ldots + a_nx_n <= 0$
+* $\ldots$
+* $m_0 + m_1x_1 + \ldots <= 0$
 
-Onde x1, ..., xn são variáveis e ai, bi, ..., mi, yi são constantes para todo i.
+Onde $x_1, \ldots, x_n$ são variáveis e $a_i, b_i, \ldots, m_i, y_i$ são constantes para todo i.
 
 
 ## 2. Solução ótima
 
-* **Solução:** combinação de valores x1, ..., xn que atende a todas as restrições
-* **Solução ótima:** é a melhor solução. Isto é, a combinação de valores x1, ..., xn que atende às restrições e maximiza / minimiza a função objetivo
+* **Solução:** combinação de valores $x_1, \ldots, x_n$ que atende a todas as restrições.
+* **Solução ótima:** é a melhor solução. Isto é, a combinação de valores $x_1, \ldots, x_n$ que atende às restrições e maximiza / minimiza a função objetivo.
 
 Pode ser que não exista nenhuma solução para o problema. Da mesma forma, podem haver uma ou várias soluções.
 Inclusive, podem haver uma ou várias soluções ótimas.
@@ -42,7 +42,7 @@ De forma geral, num problema de programação linear, queremos encontrar as solu
 ## 3. Método Simplex
 
 O primeiro pré-requisito para encontrarmos as soluções de um problema de programação linear é delimitarmos o espaço que atende a todas as restrições.
-Num exemplo em R2, podemos ver isso da seguinte forma:
+Num exemplo em $R^2$, podemos ver isso da seguinte forma:
 
 ![Alt text](simplex.png)
 
@@ -98,19 +98,25 @@ Agora, vamos definir a função objetivo e as variáveis de restrição:
 
 * Restrições
 
-$$ 100 \cdot x_1 + 150 \cdot x_2 + 50 \cdot x_4 + p_0 = 220 $$
-$$ 100 \cdot x_3 + 70 \cdot x_5 + p_1 = 80 \cdot x_4 + 1,1 \cdot p_0 $$
-$$ p_2 = 170 \cdot x_1 + 1,1 \cdot p_1$$
-$$ x_1 + x_5 <= 1 $$
+$$
+\begin{align}
+    
+100 \cdot x_1 + 150 \cdot x_2 + 50 \cdot x_4 + p_0 & = 220 \\
+100 \cdot x_3 + 70 \cdot x_5 + p_1 & = 80 \cdot x_4 + 1,1 \cdot p_0 \\
+p_2 & = 170 \cdot x_1 + 1,1 \cdot p_1 \\
+x_1 + x_5 & <= 1
 
-* x_i é binário
-* p_j >= 0
+\end{align}
+$$
+
+* $x_i$ é binário
+* $p_j >= 0$
 
 As restrições, nessa respectiva ordem, significam o seguinte:
 
-* No momento 0, vou investir exatamente 220 mil distribuídos nos investimentos x_1, x_2, x_4 e poupança (p_0)
-* No momento 1, terei 80 mil caso eu tenha investido em x_4 e terei o montante da poupança que rendeu 10%. Poderei investir esse dinheiro em x_3, x_5 e poupança (p_1)
-* No momento 2, terei 170 mil caso eu tenha investido em x_1 somado ao montante que deixei na poupança no momento p_1 acrescido de 10%. Só poderei investir esse dinheiro na poupança (p_2)
+* No momento 0, vou investir exatamente 220 mil distribuídos nos investimentos $x_1, x_2, x_4$ e poupança (p_0)
+* No momento 1, terei 80 mil caso eu tenha investido em $x_4$ e terei o montante da poupança que rendeu $10%$. Poderei investir esse dinheiro em $x_3, x_5$ e poupança (p_1)
+* No momento 2, terei $170$ mil caso eu tenha investido em $x_1$ somado ao montante que deixei na poupança no momento $p_1$ acrescido de $10%$. Só poderei investir esse dinheiro na poupança (p_2).
 
 
 * Função objetivo:
